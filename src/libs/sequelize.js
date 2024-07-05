@@ -15,7 +15,7 @@ const URI = 'postgres://default:WleRLy01zZci@ep-lucky-smoke-a4o405k1.us-east-1.a
 // Crea una instancia de Sequelize con la URI de conexión y la configuración proporcionada
 const sequelize = new Sequelize(URI, {
   dialect: 'postgres', // Especifica el dialecto de la base de datos como PostgreSQL
-  logging: true, // Habilita el registro de consultas SQL
+  logging: false, // Habilita el registro de consultas SQL
 });
 
 // Configura los modelos de Sequelize llamando a la función setupModels con la instancia de Sequelize
