@@ -1,6 +1,6 @@
 // Importa las bibliotecas necesarias
 const boom = require('@hapi/boom'); // Para manejar errores HTTP
-const bcrypt = require('bcrypt'); // Para el hash de contraseñas
+const bcrypt = require('bcryptjs'); // Para el hash de contraseñas
 
 // Importa los modelos de Sequelize desde el archivo sequelize en la carpeta libs
 const { models } = require('./../libs/sequelize');

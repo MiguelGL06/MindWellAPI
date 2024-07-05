@@ -3,7 +3,7 @@ const boom = require('@hapi/boom');
 // Importa los modelos de Sequelize desde el archivo sequelize en la carpeta libs
 const { models } = require('../libs/sequelize');
 // Importa la biblioteca 'bcrypt' para el hash de contraseñas
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 // Define la clase CustomerService
 class CustomerService {

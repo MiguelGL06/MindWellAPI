@@ -1,6 +1,6 @@
 // Importa las bibliotecas necesarias
 const boom = require('@hapi/boom'); // Para manejar errores HTTP
-const bcrypt = require('bcrypt'); // Para el hash de contraseñas
+const bcrypt = require('bcryptjs'); // Para el hash de contraseñas
 const jwt = require('jsonwebtoken'); // Para generar y verificar tokens JWT
 const nodemailer = require('nodemailer'); // Para enviar correos electrónicos
 
