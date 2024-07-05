@@ -35,7 +35,7 @@ app.use(
 );
 
 // Importa y ejecuta el archivo auth.js ubicado en la carpeta utils
-require('./utils/auth');
+require('./utils/auth/core');
 
 // Maneja las solicitudes GET en la ruta raíz ("/") con el middleware checkApiKey
 app.get('/', checkApiKey ,(req, res) => {
