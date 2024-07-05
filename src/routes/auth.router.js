@@ -4,7 +4,7 @@ const AuthService = require('./../services/auth.service'); // Importa el servici
 const UserService = require('./../services/user.service')
 const router = express.Router(); // Crea un enrutador de Express
 const service = new AuthService(); // Crea una instancia del servicio de autenticación
-const bcrypt = require('bcrypt'); //
+const bcrypt = require('bcryptjs'); //
 
 const userData = new UserService();
 
