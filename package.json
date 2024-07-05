@@ -1,8 +1,8 @@
 {
-  "name": "my-store",
+  "name": "mind-well",
   "version": "1.0.0",
   "description": "",
-  "main": "indexS.js",
+  "main": "index.js",
   "type": "module",
   "scripts": {
     "dev": "nodemon index.js",
