@@ -53,5 +53,6 @@ app.use(errorHandler);
 
 // Inicia el servidor y hace que escuche las solicitudes en el puerto especificado
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`Example app listening at http://localhost:${port},
+    documentación de api http://localhost:3000/api-docs`);
 });

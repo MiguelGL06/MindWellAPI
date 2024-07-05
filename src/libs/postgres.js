@@ -9,7 +9,7 @@ async function getConection() {
     port: 5432,
     user: 'admin',
     password: 'root123',
-    database: 'postgres'
+    database: 'verceldb'
   });
 
   // Establece la conexión con la base de datos
