@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "postinstall": "npm install pg",
     "dev": "nodemon index.js",
     "start": "node index.js",
     "lint": "eslint",
