@@ -1,0 +1,21 @@
+version: '3.3' # Versión de la configuración de Docker Compose
+
+services:
+  postgres: # Nombre del servicio para el servidor PostgreSQL
+    image: postgres:13 # Imagen Docker a utilizar para el servidor PostgreSQL, en este caso, PostgreSQL versión 13
+    environment: # Variables de entorno para configurar el servidor PostgreSQL
+      - POSTGRES_DB=my_db # Nombre de la base de datos que se creará automáticamente al iniciar el contenedor
+      - POSTGRES_USER=admin # Usuario administrador de la base de datos PostgreSQL
+      - POSTGRES_PASSWORD=root123 # Contraseña del usuario administrador
+    ports: # Mapeo de puertos para exponer el servicio al host
+      - "5432:5432" # Puerto del contenedor PostgreSQL (5432) mapeado al puerto del host
+    volumes: # Configuración de volúmenes para persistir los datos de la base de datos PostgreSQL
+      - ./postgres_data:/var/lib/postgresql/data # Mapeo de un volumen local a un directorio dentro del contenedor
+
+  pgadmin: # Nombre del servicio para PgAdmin
+    image: dpage/pgadmin4 # Imagen Docker a utilizar para PgAdmin
+    environment: # Variables de entorno para configurar PgAdmin
+      - PGADMIN_DEFAULT_EMAIL=admin@mail.com # Correo electrónico predeterminado para el inicio de sesión en PgAdmin
+      - PGADMIN_DEFAULT_PASSWORD=root # Contraseña predeterminada para el inicio de sesión en PgAdmin
+    ports: # Mapeo de puertos para exponer el servicio al host
+      - 5050:80 # Puerto del contenedor PgAdmin (80) mapeado al puerto del host
