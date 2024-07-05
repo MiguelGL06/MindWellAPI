@@ -1,19 +1,19 @@
 // Importa el módulo express, que es un framework web para Node.js
 const express = require('express');
 
-const mainDocs = require("./swagger/mainDocs");
+const mainDocs = require("./src/swagger/mainDocs");
 
 const swaggerUi = require("swagger-ui-express");
 
 
 // Importa el módulo routerAPI desde el archivo routes.js ubicado en la misma carpeta
-const routerAPI = require('./routes/index');
+const routerAPI = require('./src/routes/index');
 
 // Importa los manejadores de errores desde el archivo error.handler.js ubicado en la carpeta middlewares
-const { logErrors, errorHandler, boomErrorHandler, ormErrorHandler } = require('./middlewares/error.handler');
+const { logErrors, errorHandler, boomErrorHandler, ormErrorHandler } = require('./src/middlewares/error.handler');
 
 // Importa la función checkApiKey desde el archivo auth.handler.js ubicado en la carpeta middlewares
-const { checkApiKey } = require('./middlewares/auth.handler');
+const { checkApiKey } = require('./src/middlewares/auth.handler');
 
 // Crea una instancia de la aplicación express
 const app = express();
@@ -35,7 +35,7 @@ app.use(
 );
 
 // Importa y ejecuta el archivo auth.js ubicado en la carpeta utils
-require('./utils/auth/core');
+require('./src/utils/auth/core');
 
 // Maneja las solicitudes GET en la ruta raíz ("/") con el middleware checkApiKey
 app.get('/', checkApiKey ,(req, res) => {
