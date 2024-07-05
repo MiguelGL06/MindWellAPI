@@ -1,5 +1,3 @@
-const { patch } = require("../routes/customers.router");
-
 module.exports = {
   '/api/v1/users': {
     post: {
