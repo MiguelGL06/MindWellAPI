@@ -6,7 +6,8 @@ const USER = encodeURIComponent(config.dbUser);
 const PASSWORD = encodeURIComponent(config.dbPassword);
 
 // Construye la URL de conexión a la base de datos PostgreSQL utilizando la configuración y las credenciales codificadas
-const URI = `postgres://${USER}:${PASSWORD}@${config.dbHost}:${config.dbPort}/${config.dbName}`;
+//const URI = `postgres://${USER}:${PASSWORD}@${config.dbHost}:${config.dbPort}/${config.dbName}`;
+const URI = 'postgres://default:WleRLy01zZci@ep-lucky-smoke-a4o405k1-pooler.us-east-1.aws.neon.tech/verceldb?sslmode=require'
 
 // Exporta un objeto que contiene la configuración de Sequelize para diferentes entornos (desarrollo y producción)
 module.exports = {
