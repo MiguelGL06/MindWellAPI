@@ -7,7 +7,7 @@ const swaggerUi = require("swagger-ui-express");
 
 
 // Importa el módulo routerAPI desde el archivo routes.js ubicado en la misma carpeta
-const routerAPI = require('./routes');
+const routerAPI = require('./routes/index');
 
 // Importa los manejadores de errores desde el archivo error.handler.js ubicado en la carpeta middlewares
 const { logErrors, errorHandler, boomErrorHandler, ormErrorHandler } = require('./middlewares/error.handler');
