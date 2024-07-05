@@ -10,7 +10,7 @@ const USER =  encodeURIComponent(config.dbUser);
 const PASSWORD = encodeURIComponent(config.dbPassword);
 // Construye la URI de conexión a la base de datos PostgreSQL
 //const URI = `postgres://${USER}:${PASSWORD}@${config.dbHost}:${config.dbPort}/${config.dbName}`;
-const URI = 'postgres://default:WleRLy01zZci@ep-lucky-smoke-a4o405k1.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require'
+const URI = 'postgresql://admin:vT6ElDfTZ4Lr496AvVpSSgPeBtN35PEA@dpg-cq44pquehbks73b6rin0-a.oregon-postgres.render.com/my_db_6tno'
 
 // Crea una instancia de Sequelize con la URI de conexión y la configuración proporcionada
 const sequelize = new Sequelize(URI, {
