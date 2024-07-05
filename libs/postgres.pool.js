@@ -8,7 +8,7 @@ const USER = encodeURIComponent(config.dbUser);
 const PASSWORD = encodeURIComponent(config.dbPassword);
 // Construye la URI de conexión a la base de datos PostgreSQL
 //const URI = `postgres://${USER}:${PASSWORD}@${config.dbHost}:${config.dbPort}/${config.dbName}`;
-const URI = 'postgres://default:WleRLy01zZci@ep-lucky-smoke-a4o405k1-pooler.us-east-1.aws.neon.tech/verceldb?sslmode=require'
+const URI = 'postgres://default:WleRLy01zZci@ep-lucky-smoke-a4o405k1.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require'
 // Crea una instancia de Pool de PostgreSQL con la URI de conexión
 const pool = new Pool({ connectionString: URI });
 
