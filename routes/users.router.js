@@ -47,7 +47,7 @@ router.post('/',
 );
 
 // Maneja las solicitudes PATCH para actualizar un usuario existente por su ID
-router.patch('/:id',
+router.patch('/:id', checkApiKey,
   validatorHandler(getUserSchema, 'params'), // Valida el parámetro de ID utilizando el esquema correspondiente
   validatorHandler(updateUserSchema, 'body'), // Valida el cuerpo de la solicitud utilizando el esquema correspondiente
   async (req, res, next) => {
