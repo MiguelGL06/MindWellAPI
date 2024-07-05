@@ -1,5 +1,4 @@
 // Importa las bibliotecas necesarias
-const boom = require('@hapi/boom'); // Para manejar errores HTTP
 const bcrypt = require('bcryptjs'); // Para el hash de contraseñas
 
 // Importa los modelos de Sequelize desde el archivo sequelize en la carpeta libs
@@ -54,9 +53,9 @@ class UserService {
     // Busca un usuario por su ID en la base de datos
     const user = await models.User.findByPk(id);
 
-    // Si no se encuentra el usuario, lanza un error de "not found"
+    // Si no se encuentra el usuario, lanza un error
     if (!user) {
-      throw boom.notFound('user not found');
+      throw new Error('User not found');
     }
 
     // Retorna el usuario encontrado

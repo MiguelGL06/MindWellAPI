@@ -5,7 +5,7 @@ const swaggerUi = require("swagger-ui-express");
 // Importa el módulo routerAPI desde el archivo routes.js ubicado en la misma carpeta
 const routerAPI = require('./src/routes/index');
 // Importa los manejadores de errores desde el archivo error.handler.js ubicado en la carpeta middlewares
-const { logErrors, errorHandler, boomErrorHandler, ormErrorHandler } = require('./src/middlewares/error.handler');
+const { logErrors, errorHandler, customErrorHandler, ormErrorHandler } = require('./src/middlewares/error.handler');
 // Importa la función checkApiKey desde el archivo auth.handler.js ubicado en la carpeta middlewares
 const { checkApiKey } = require('./src/middlewares/auth.handler');
 // Crea una instancia de la aplicación express
@@ -30,7 +30,7 @@ app.use(
 require('./src/utils/auth/core');
 
 // Maneja las solicitudes GET en la ruta raíz ("/") con el middleware checkApiKey
-app.get('/', checkApiKey ,(req, res) => {
+app.get('/',(req, res) => {
   res.send('Hello World!');
 });
 
@@ -40,7 +40,7 @@ routerAPI(app);
 // Agrega los middlewares de manejo de errores en el orden especificado
 app.use(logErrors);
 app.use(ormErrorHandler);
-app.use(boomErrorHandler);
+app.use(customErrorHandler);
 app.use(errorHandler);
 
 // Inicia el servidor y hace que escuche las solicitudes en el puerto especificado

@@ -1,7 +1,5 @@
 // Importa la clase ValidationError de Sequelize para manejar errores de validación de la base de datos
 const { ValidationError } = require('sequelize');
-// Importa el paquete boom para generar errores HTTP de manera fácil y consistente
-const boom = require('@hapi/boom');
 
 // Middleware para registrar errores en la consola
 function logErrors(err, req, res, next) {
@@ -21,14 +19,17 @@ function errorHandler(err, req, res, next) {
 }
 
 // Middleware para manejar errores generados por el paquete boom
-function boomErrorHandler(err, req, res, next) {
-  // Verifica si el error es de tipo boom
-  if (err.isBoom) {
-    // Si es un error boom, obtiene los detalles del error y los envía como respuesta
-    const { output } = err;
-    res.status(output.statusCode).json(output.payload);
+function customErrorHandler(err, req, res, next) {
+  // Verifica si el error tiene una propiedad isCustomError
+  if (err.isCustomError) {
+    // Si es un error personalizado, obtiene los detalles del error y los envía como respuesta
+    res.status(err.statusCode).json({
+      statusCode: err.statusCode,
+      message: err.message,
+      details: err.details,
+    });
   } else {
-    // Si no es un error boom, pasa al siguiente middleware
+    // Si no es un error personalizado, pasa al siguiente middleware
     next(err);
   }
 }
@@ -43,10 +44,11 @@ function ormErrorHandler(err, req, res, next) {
       message: err.name,
       errors: err.errors
     });
+  } else {
+    // Pasa al siguiente middleware
+    next(err);
   }
-  // Pasa al siguiente middleware
-  next(err);
 }
 
 // Exporta todos los middlewares para que puedan ser utilizados en otros archivos
-module.exports = { logErrors, errorHandler, boomErrorHandler, ormErrorHandler };
+module.exports = { logErrors, errorHandler, customErrorHandler, ormErrorHandler };

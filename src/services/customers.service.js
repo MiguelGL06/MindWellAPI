@@ -1,5 +1,3 @@
-// Importa la biblioteca 'boom' para manejar errores HTTP
-const boom = require('@hapi/boom');
 // Importa los modelos de Sequelize desde el archivo sequelize en la carpeta libs
 const { models } = require('../libs/sequelize');
 // Importa la biblioteca 'bcrypt' para el hash de contraseñas
@@ -7,7 +5,6 @@ const bcrypt = require('bcryptjs');
 
 // Define la clase CustomerService
 class CustomerService {
-
   constructor() {}
 
   // Método para buscar todos los clientes en la base de datos
@@ -22,7 +19,7 @@ class CustomerService {
   async findOne(id) {
     const user = await models.Customer.findByPk(id);
     if (!user) {
-      throw boom.notFound('customer not found');
+      throw new Error('Customer not found');
     }
     return user;
   }
@@ -34,11 +31,11 @@ class CustomerService {
     // Modifica los datos de entrada para incluir la contraseña hasheada
     const newData = {
       ...data,
-      user:{
+      user: {
         ...data.user,
-        password:  hash
+        password: hash
       }
-    }
+    };
     // Crea un nuevo cliente en la base de datos, incluyendo el usuario asociado
     const newCustomer = await models.Customer.create(newData, {
       include: ['user']
