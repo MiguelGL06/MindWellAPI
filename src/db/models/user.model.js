@@ -29,6 +29,15 @@ const UserSchema = {
     type: DataTypes.STRING,
     defaultValue: 'custom'
   },
+  profileId: {
+    field: 'profile_id',
+    type: DataTypes.INTEGER,
+    allowNull: true,
+    references: {
+      model: Profile,
+      key: 'id'
+    }
+  },
   createdAt: {
     allowNull: false,
     type: DataTypes.DATE,
