@@ -1,0 +1,122 @@
+module.exports = {
+  '/api/v1/profiles': {
+    post: {
+      tags: ['profile controllers'],
+      summary: 'Crear nuevo perfil',
+      description: 'Creación de perfil',
+      requestBody: {
+        required: true,
+        content: {
+          'application/json': {
+            schema: {
+              type: 'object',
+              properties: {
+                userId: {
+                  type: 'string',
+                  description: 'ID del usuario asociado al perfil',
+                },
+                bio: {
+                  type: 'string',
+                  description: 'Biografía del usuario',
+                },
+              },
+              example: {
+                userId: '1234567890',
+                bio: 'Biografía del usuario...',
+              },
+            },
+          },
+        },
+      },
+      responses: {
+        201: {
+          description: 'Perfil creado exitosamente.',
+        },
+        500: {
+          description: 'Error al crear el perfil.',
+        },
+        400: {
+          description: 'Los datos de creación del perfil son incorrectos.',
+        },
+      },
+    },
+  },
+  '/api/v1/profiles/{id}': {
+    get: {
+      tags: ['profile controllers'],
+      summary: 'Buscar perfil',
+      description: 'Busca el perfil por su id',
+      parameters: [
+        {
+          in: 'path',
+          name: 'id',
+          description: 'Id del perfil',
+          required: true,
+          type: 'string',
+        },
+      ],
+      responses: {
+        404: {
+          description: 'Perfil no encontrado.',
+        },
+      },
+    },
+    patch: {
+      tags: ['profile controllers'],
+      summary: 'Actualizar perfil',
+      description: 'Actualizar perfil',
+      requestBody: {
+        required: true,
+        content: {
+          'application/json': {
+            schema: {
+              type: 'object',
+              properties: {
+                bio: {
+                  type: 'string',
+                  description: 'Biografía del usuario',
+                },
+              },
+              example: {
+                bio: 'Biografía actualizada del usuario...',
+              },
+            },
+          },
+        },
+      },
+      responses: {
+        201: {
+          description: 'Perfil actualizado exitosamente.',
+        },
+        500: {
+          description: 'Error al actualizar el perfil.',
+        },
+        400: {
+          description: 'Los datos de actualización del perfil son incorrectos.',
+        },
+      },
+    },
+    delete: {
+      tags: ['profile controllers'],
+      summary: 'Borrar perfil',
+      description: 'Borra el perfil por su id',
+      parameters: [
+        {
+          in: 'path',
+          name: 'id',
+          description: 'Id del perfil',
+          required: true,
+          type: 'string',
+        },
+      ],
+      responses: {
+        201: {
+          description: 'Perfil eliminado exitosamente.',
+        },
+        404: {
+          description: 'Perfil no encontrado.',
+        },
+      },
+    },
+  },
+};

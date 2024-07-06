@@ -1,6 +1,9 @@
 const userDocs = require('./userDocs');
 const authDocs = require('./authDocs');
-const customerDocs = require('./customerDocs');
+const forumDocs = require('./forumDocs');
+const postDocs = require('./postDocs');
+const profileDocs = require('./profileDocs');
+const topicDocs = require('./topicDocs');
 
 module.exports = {
     "openapi": "3.0.0",
@@ -29,6 +32,10 @@ module.exports = {
     "paths": {
        ...userDocs,
        ...authDocs,
-       ...customerDocs
+       ...forumDocs,
+       ...postDocs,
+       ...profileDocs,
+       ...topicDocs,
+       // Agrega más paths aquí...
     }
 }
