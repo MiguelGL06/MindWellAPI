@@ -11,6 +11,22 @@ class UserService {
 
   // Método para crear un nuevo usuario en la base de datos
   async create(data) {
+
+    const profileData = {
+      firstName: data.firstName || '',
+      lastName: data.lastName || '',
+      bio: data.bio || '',
+      avatarUrl: data.avatarUrl || ''
+    };
+
+    const newProfile = await Profile.create(profileData);
+
+    // Create the user with the newly created profile ID
+    const userData = {
+      email: data.email,
+      password: data.password,
+      profileId: newProfile.id // Associate the profile with the user
+    };
     // Genera un hash de la contraseña del usuario utilizando bcrypt
     const hash = await bcrypt.hash(data.password, 10);
 
