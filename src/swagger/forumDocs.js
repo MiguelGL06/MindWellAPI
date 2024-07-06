@@ -11,9 +11,9 @@ module.exports = {
             schema: {
               type: 'object',
               properties: {
-                name: {
+                title: {
                   type: 'string',
-                  description: 'Nombre del foro',
+                  description: 'Titulo del foro',
                 },
                 description: {
                   type: 'string',
@@ -21,7 +21,7 @@ module.exports = {
                 },
               },
               example: {
-                name: 'Foro de tecnología',
+                title: 'Foro de tecnología',
                 description: 'Un foro para discutir sobre tecnología...',
               },
             },
@@ -72,7 +72,7 @@ module.exports = {
             schema: {
               type: 'object',
               properties: {
-                name: {
+                title: {
                   type: 'string',
                   description: 'Nombre del foro',
                 },
@@ -82,7 +82,7 @@ module.exports = {
                 },
               },
               example: {
-                name: 'Foro de tecnología',
+                title: 'Foro de tecnología',
                 description: 'Descripción actualizada del foro...',
               },
             },
