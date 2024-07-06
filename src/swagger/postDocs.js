@@ -1,5 +1,5 @@
 module.exports = {
-  '/api/v1/posts': {
+  '/api/v1/post': {
     post: {
       tags: ['post controllers'],
       summary: 'Crear nueva respuesta',
@@ -46,7 +46,7 @@ module.exports = {
       },
     },
   },
-  '/api/v1/posts/{id}': {
+  '/api/v1/post/{id}': {
     get: {
       tags: ['post controllers'],
       summary: 'Buscar respuesta',
