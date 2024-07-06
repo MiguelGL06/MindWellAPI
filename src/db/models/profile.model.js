@@ -46,8 +46,9 @@ const ProfileSchema = {
 class Profile extends Model {
   static associate(models) {
     this.hasOne(models.User, {
-      as: 'user',
-      foreignKey: 'profileId'
+      foreignKey: 'profileId', // Aquí indicamos la clave foránea en el modelo User
+      onDelete: 'SET NULL',
+      onUpdate: 'CASCADE'
     });
   }
 
@@ -55,10 +56,9 @@ class Profile extends Model {
     return {
       sequelize,
       tableName: PROFILE_TABLE,
-      modelName: 'profile',
+      modelName: 'Profile', // Nombre del modelo en singular
       timestamps: false
     };
   }
 }
-
 module.exports = { PROFILE_TABLE, ProfileSchema, Profile };
