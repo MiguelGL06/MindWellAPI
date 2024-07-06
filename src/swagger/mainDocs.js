@@ -18,6 +18,9 @@ module.exports = {
         },
         {
           "url": "https://mindwellapi.onrender.com"
+        },
+        {
+          "url": "https://mindwellapi-1.onrender.com"
         }
     ],
     "components": {
