@@ -19,7 +19,7 @@ router.get('/', async (req, res, next) => {
 });
 
 // Maneja las solicitudes GET para obtener un foro por su ID
-router.get('/:id', checkApiKey,
+router.get('/:id',
   validatorHandler(getForumSchema, 'params'), // Valida el parámetro de ID utilizando el esquema correspondiente
   async (req, res, next) => {
     try {
