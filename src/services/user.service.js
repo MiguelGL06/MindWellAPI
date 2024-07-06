@@ -30,9 +30,7 @@ class UserService {
   // Método para buscar todos los usuarios en la base de datos
   async find() {
     // Busca todos los usuarios en la base de datos, incluyendo la relación 'customer'
-    const rta = await models.User.findAll({
-      include: ['customer']
-    });
+    const rta = await models.User.findAll();
 
     // Retorna la respuesta de la consulta
     return rta;
