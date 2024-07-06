@@ -1,5 +1,5 @@
 module.exports = {
-  '/api/v1/profiles': {
+  '/api/v1/profile': {
     post: {
       tags: ['profile controllers'],
       summary: 'Crear nuevo perfil',
@@ -41,7 +41,7 @@ module.exports = {
       },
     },
   },
-  '/api/v1/profiles/{id}': {
+  '/api/v1/profile/{id}': {
     get: {
       tags: ['profile controllers'],
       summary: 'Buscar perfil',
