@@ -1,4 +1,3 @@
-// user.model.js
 const { Model, DataTypes, Sequelize } = require('sequelize');
 
 const USER_TABLE = 'users';
@@ -14,7 +13,10 @@ const UserSchema = {
     field: 'profile_id',
     type: DataTypes.INTEGER,
     allowNull: true,
-    references: { model: 'profile', key: 'id' },
+    references: {
+      model: 'profiles',
+      key: 'id'
+    },
     onUpdate: 'CASCADE',
     onDelete: 'SET NULL'
   },
@@ -47,18 +49,9 @@ const UserSchema = {
 
 class User extends Model {
   static associate(models) {
-    this.belongsTo(models.Profile, {
-      as: 'profile',
-      foreignKey: 'profileId'
-    });
-    this.hasMany(models.Topic, {
-      as: 'topics',
-      foreignKey: 'userId'
-    });
-    this.hasMany(models.Post, {
-      as: 'posts',
-      foreignKey: 'userId'
-    });
+    this.belongsTo(models.Profile, { as: 'profile', foreignKey: 'profileId' });
+    this.hasMany(models.Topic, { as: 'topics', foreignKey: 'userId' });
+    this.hasMany(models.Post, { as: 'posts', foreignKey: 'userId' });
   }
 
   static config(sequelize) {

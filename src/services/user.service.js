@@ -11,7 +11,7 @@ class UserService {
 
   // Método para crear un nuevo usuario en la base de datos
   async create(data) {
-
+    // Primero crea el perfil
     const profileData = {
       firstName: data.firstName || '',
       lastName: data.lastName || '',
@@ -21,19 +21,14 @@ class UserService {
 
     const newProfile = await Profile.create(profileData);
 
-    // Create the user with the newly created profile ID
-    const userData = {
-      email: data.email,
-      password: data.password,
-      profileId: newProfile.id // Associate the profile with the user
-    };
     // Genera un hash de la contraseña del usuario utilizando bcrypt
     const hash = await bcrypt.hash(data.password, 10);
 
-    // Crea un nuevo usuario en la base de datos con la contraseña hasheada
+    // Crea un nuevo usuario en la base de datos con la contraseña hasheada y el ID del perfil asociado
     const newUser = await models.User.create({
-      ...data,
-      password: hash
+      email: data.email,
+      password: hash,
+      profileId: newProfile.id // Associate the profile with the user
     });
 
     // Elimina la contraseña del objeto de usuario para no enviarla en la respuesta
