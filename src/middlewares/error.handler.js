@@ -13,11 +13,15 @@ function logErrors(err, req, res, next) {
 
 // Middleware para manejar errores generales
 function errorHandler(err, req, res, next) {
-  // Envía una respuesta con un código de estado 500 (Internal Server Error) y los detalles del error
-  res.status(500).json({
-    message: err.message,
-    stack: err.stack,
-  });
+  if (err.isBoom) {
+    const { output } = err;
+    res.status(output.statusCode).json(output.payload);
+  } else {
+    res.status(500).json({
+      message: err.message,
+      stack: err.stack,
+    });
+  }
 }
 
 // Middleware para manejar errores generados por el paquete boom

@@ -22,7 +22,7 @@ router.get('/:id',
   async (req, res, next) => {
     try {
       const { id } = req.params;
-      const profile = await service.findById(id);
+      const profile = await service.findOne(id);
       res.json(profile);
     } catch (error) {
       next(error);
