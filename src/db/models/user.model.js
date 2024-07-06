@@ -14,10 +14,9 @@ const UserSchema = {
     field: 'profile_id',
     type: DataTypes.INTEGER,
     allowNull: true,
-    references: {
-      model: 'Profile',
-      key: 'id'
-    }
+    references: { model: 'profile', key: 'id' },
+    onUpdate: 'CASCADE',
+    onDelete: 'SET NULL'
   },
   email: {
     allowNull: false,
