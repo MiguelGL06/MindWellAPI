@@ -32,11 +32,11 @@ module.exports = {
         201: {
           description: 'Perfil creado exitosamente.',
         },
-        500: {
-          description: 'Error al crear el perfil.',
-        },
         400: {
           description: 'Los datos de creación del perfil son incorrectos.',
+        },
+        500: {
+          description: 'Error al crear el perfil.',
         },
       },
     },
@@ -52,10 +52,15 @@ module.exports = {
           name: 'id',
           description: 'Id del perfil',
           required: true,
-          type: 'string',
+          schema: {
+            type: 'string',
+          },
         },
       ],
       responses: {
+        200: {
+          description: 'Perfil encontrado exitosamente.',
+        },
         404: {
           description: 'Perfil no encontrado.',
         },
@@ -85,14 +90,14 @@ module.exports = {
         },
       },
       responses: {
-        201: {
+        200: {
           description: 'Perfil actualizado exitosamente.',
-        },
-        500: {
-          description: 'Error al actualizar el perfil.',
         },
         400: {
           description: 'Los datos de actualización del perfil son incorrectos.',
+        },
+        500: {
+          description: 'Error al actualizar el perfil.',
         },
       },
     },
@@ -106,11 +111,13 @@ module.exports = {
           name: 'id',
           description: 'Id del perfil',
           required: true,
-          type: 'string',
+          schema: {
+            type: 'string',
+          },
         },
       ],
       responses: {
-        201: {
+        200: {
           description: 'Perfil eliminado exitosamente.',
         },
         404: {

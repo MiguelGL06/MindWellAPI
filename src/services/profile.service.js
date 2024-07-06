@@ -1,5 +1,6 @@
-// Importa la biblioteca Joi para la validación de esquemas
-const Joi = require('joi');
+// Importa las bibliotecas necesarias
+const Joi = require('joi'); // Para la validación de esquemas
+const boom = require('@hapi/boom'); // Para manejar errores HTTP
 
 // Importa el modelo de Profile desde su respectivo archivo
 const { Profile } = require('./../db/models/profile.model'); // Ajusta la ruta según tu estructura
@@ -37,9 +38,9 @@ class ProfileService {
     // Busca el perfil en la base de datos por su ID
     const profile = await Profile.findByPk(id);
 
-    // Si no se encuentra el perfil, lanza un error
+    // Si no se encuentra el perfil, lanza un error de "not found"
     if (!profile) {
-      throw new Error('Profile not found');
+      throw boom.notFound('Profile not found');
     }
 
     // Retorna el perfil encontrado
@@ -54,16 +55,16 @@ class ProfileService {
     // Busca el perfil en la base de datos por su ID
     const profile = await Profile.findByPk(id);
 
-    // Si no se encuentra el perfil, lanza un error
+    // Si no se encuentra el perfil, lanza un error de "not found"
     if (!profile) {
-      throw new Error('Profile not found');
+      throw boom.notFound('Profile not found');
     }
 
     // Actualiza el perfil con los datos proporcionados
-    await profile.update(data);
+    const updatedProfile = await profile.update(data);
 
     // Retorna el perfil actualizado
-    return profile;
+    return updatedProfile;
   }
 
   // Método para eliminar un perfil de la base de datos
@@ -71,9 +72,9 @@ class ProfileService {
     // Busca el perfil en la base de datos por su ID
     const profile = await Profile.findByPk(id);
 
-    // Si no se encuentra el perfil, lanza un error
+    // Si no se encuentra el perfil, lanza un error de "not found"
     if (!profile) {
-      throw new Error('Profile not found');
+      throw boom.notFound('Profile not found');
     }
 
     // Elimina el perfil de la base de datos
