@@ -46,7 +46,7 @@ class TopicService {
 
       // Buscar un tema por su ID en la base de datos
       const topic = await models.Topic.findByPk(id, {
-        include: [{ model: models.Forum, as: 'forum' }, { model: models.Post, as: 'post' }]
+        include: [{ model: models.Forum, as: 'forum' }, { model: models.Post, as: 'posts' }]
 
       });
 
