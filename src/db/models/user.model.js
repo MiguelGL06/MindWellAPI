@@ -48,6 +48,10 @@ const UserSchema = {
 
 class User extends Model {
   static associate(models) {
+    this.belongsTo(models.Profile, {
+      as: 'profile',
+      foreignKey: 'profileId'
+    });
     this.hasMany(models.Topic, {
       as: 'topics',
       foreignKey: 'userId'
