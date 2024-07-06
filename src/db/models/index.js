@@ -1,8 +1,8 @@
 const { Sequelize } = require('sequelize');
 const { User, UserSchema } = require('./user.model');
-const { Forum, ForumSchema } = require('./forum.model');
-const { Topic, TopicSchema } = require('./topic.model');
-const { Post, PostSchema } = require('./post.model');
+const { Forum, ForumSchema } = require('./forums.model');
+const { Topic, TopicSchema } = require('./topics.model');
+const { Post, PostSchema } = require('./posts.model');
 const { Profile, ProfileSchema } = require('./profile.model');
 
 
