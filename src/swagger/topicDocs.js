@@ -1,5 +1,5 @@
 module.exports = {
-  '/api/v1/topics': {
+  '/api/v1/topic': {
     post: {
       tags: ['topic controllers'],
       summary: 'Crear nuevo tema',
@@ -51,7 +51,7 @@ module.exports = {
       },
     },
   },
-  '/api/v1/topics/{id}': {
+  '/api/v1/topic/{id}': {
     get: {
       tags: ['topic controllers'],
       summary: 'Buscar tema',
