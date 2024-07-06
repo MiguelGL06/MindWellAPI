@@ -10,6 +10,15 @@ const UserSchema = {
     primaryKey: true,
     type: DataTypes.INTEGER
   },
+  profileId: {
+    field: 'profile_id',
+    type: DataTypes.INTEGER,
+    allowNull: true,
+    references: {
+      model: 'Profile',
+      key: 'id'
+    }
+  },
   email: {
     allowNull: false,
     type: DataTypes.STRING,
@@ -28,15 +37,6 @@ const UserSchema = {
     allowNull: false,
     type: DataTypes.STRING,
     defaultValue: 'custom'
-  },
-  profileId: {
-    field: 'profile_id',
-    type: DataTypes.INTEGER,
-    allowNull: true,
-    references: {
-      model: Profile,
-      key: 'id'
-    }
   },
   createdAt: {
     allowNull: false,
