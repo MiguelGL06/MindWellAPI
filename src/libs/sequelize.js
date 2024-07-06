@@ -14,7 +14,7 @@ const URI = 'postgresql://admin:vT6ElDfTZ4Lr496AvVpSSgPeBtN35PEA@dpg-cq44pquehbk
 
 // Crea una instancia de Sequelize con la URI de conexión y la configuración proporcionada
 const sequelize = new Sequelize(URI, {
-  dialect: 'postgres', // Especifica el dialecto de la base de datos como PostgreSQL
+  dialectModule: require('pg'), // Especifica el dialecto de la base de datos como PostgreSQL
   logging: false, // Habilita el registro de consultas SQL
 });
 

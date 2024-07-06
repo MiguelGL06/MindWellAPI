@@ -8,6 +8,8 @@ const routerAPI = require('./src/routes/index');
 const { logErrors, errorHandler, customErrorHandler, ormErrorHandler } = require('./src/middlewares/error.handler');
 // Importa la función checkApiKey desde el archivo auth.handler.js ubicado en la carpeta middlewares
 const { checkApiKey } = require('./src/middlewares/auth.handler');
+
+const { exec } = require('child_process');
 // Crea una instancia de la aplicación express
 const app = express();
 
