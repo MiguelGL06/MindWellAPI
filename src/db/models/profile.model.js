@@ -55,7 +55,7 @@ class Profile extends Model {
     return {
       sequelize,
       tableName: PROFILE_TABLE,
-      modelName: 'Profile',
+      modelName: 'profile',
       timestamps: false
     };
   }

@@ -12,9 +12,9 @@ const UserSchema = {
   profileId: {
     field: 'profile_id',
     type: DataTypes.INTEGER,
-    allowNull: true,
+    allowNull: false,
     references: {
-      model: 'profiles',
+      model: 'profile',
       key: 'id'
     },
     onUpdate: 'CASCADE',
