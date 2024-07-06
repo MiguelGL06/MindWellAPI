@@ -12,7 +12,7 @@ User.init(UserSchema, User.config(sequelize));
 Forum.init(ForumSchema, Forum.config(sequelize));
 Topic.init(TopicSchema, Topic.config(sequelize));
 Post.init(PostSchema, Post.config(sequelize));
-Post.init(ProfileSchema, Profile.config(sequelize));
+Profile.init(ProfileSchema, Profile.config(sequelize));
 
 User.associate(sequelize.models);
 Forum.associate(sequelize.models);

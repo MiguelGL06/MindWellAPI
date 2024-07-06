@@ -1,10 +1,10 @@
 'use strict';
 
 const { UserSchema, USER_TABLE } = require('./../models/user.model');
-const { ProfileSchema, PROFILE_TABLE } = require('./../models/profile.model');
-const { ForumSchema, FORUM_TABLE } = require('./../models/forum.model');
-const { TopicSchema, TOPIC_TABLE } = require('./../models/topic.model');
-const { PostSchema, POST_TABLE } = require('./../models/post.model');
+const { ProfileSchema, PROFILE_TABLE } = require('./../models/profiles.model');
+const { ForumSchema, FORUM_TABLE } = require('./../models/forums.model');
+const { TopicSchema, TOPIC_TABLE } = require('./../models/topics.model');
+const { PostSchema, POST_TABLE } = require('./../models/posts.model');
 
 
 module.exports = {
