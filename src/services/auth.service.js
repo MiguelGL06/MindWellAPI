@@ -1,4 +1,5 @@
 // Importa las bibliotecas necesarias
+const boom = require('@hapi/boom'); // Para manejar errores HTTP
 const bcrypt = require('bcryptjs'); // Para el hash de contraseñas
 const jwt = require('jsonwebtoken'); // Para generar y verificar tokens JWT
 const nodemailer = require('nodemailer'); // Para enviar correos electrónicos
@@ -18,7 +19,7 @@ class AuthService {
 
     // Si no se encuentra al usuario, lanza un error de "unauthorized" (no autorizado)
     if (!user) {
-      throw new Error('Unauthorized');
+      throw boom.unauthorized();
     }
 
     // Compara la contraseña proporcionada con la contraseña almacenada del usuario
@@ -26,7 +27,7 @@ class AuthService {
 
     // Si las contraseñas no coinciden, lanza un error de "unauthorized"
     if (!isMatch) {
-      throw new Error('Unauthorized');
+      throw boom.unauthorized();
     }
 
     // Elimina la contraseña del objeto usuario para no enviarla en la respuesta
@@ -60,16 +61,16 @@ class AuthService {
     const user = await service.findByEmail(email);
     // Si no se encuentra al usuario, lanza un error de "unauthorized"
     if (!user) {
-      throw new Error('Unauthorized');
+      throw boom.unauthorized();
     }
     // Crea un payload con el ID del usuario
     const payload = { sub: user.id };
     // Genera un token JWT de recuperación de contraseña válido por 15 minutos
-    const token = jwt.sign(payload, config.jwtSecret, { expiresIn: '15min' });
+    const token = jwt.sign(payload, config.jwtSecret, {expiresIn: '15min'});
     // Construye el enlace de recuperación de contraseña
     const link = `http://myfrontend.com/recovery?token=${token}`;
     // Actualiza el token de recuperación de contraseña del usuario en la base de datos
-    await service.update(user.id, { recoveryToken: token });
+    await service.update(user.id, {recoveryToken: token});
     // Configura los detalles del correo electrónico
     const mail = {
       from: config.smtpEmail,
@@ -96,20 +97,20 @@ class AuthService {
 
       // Si el token de recuperación de contraseña almacenado en el usuario no coincide con el token proporcionado, lanza un error de "unauthorized"
       if (user.recoveryToken !== token) {
-        throw new Error('Unauthorized');
+        throw boom.unauthorized();
       }
 
       // Genera un hash de la nueva contraseña
       const hash = await bcrypt.hash(newPassword, 10);
 
       // Actualiza el token de recuperación de contraseña del usuario y su contraseña en la base de datos
-      await service.update(user.id, { recoveryToken: null, password: hash });
+      await service.update(user.id, {recoveryToken: null, password: hash});
 
       // Retorna un mensaje indicando que la contraseña ha sido cambiada exitosamente
       return { message: 'password changed' };
     } catch (error) {
       // Si ocurre algún error durante el proceso, lanza un error de "unauthorized"
-      throw new Error('Unauthorized');
+      throw boom.unauthorized();
     }
   }
 
