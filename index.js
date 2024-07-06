@@ -2,6 +2,8 @@
 const express = require('express');
 const mainDocs = require("./src/swagger/mainDocs");
 const swaggerUi = require("swagger-ui-express");
+const sequelize = require('./src/libs/sequelize');
+
 // Importa el módulo routerAPI desde el archivo routes.js ubicado en la misma carpeta
 const routerAPI = require('./src/routes/index');
 // Importa los manejadores de errores desde el archivo error.handler.js ubicado en la carpeta middlewares
@@ -45,7 +47,14 @@ app.use(customErrorHandler);
 app.use(errorHandler);
 
 // Inicia el servidor y hace que escuche las solicitudes en el puerto especificado
-app.listen(port, () => {
+app.listen(port, async () => {
   console.log(`Example app listening at http://localhost:${port}`);
   console.log(`API documentation at http://localhost:${port}/api-docs`);
+  try {
+    // Ejecuta las migraciones al iniciar la aplicación
+    await sequelize.sync({ force: false }); // Cambia a true si deseas forzar la sincronización (eliminar y recrear tablas)
+    console.log('Sequelize sync successful.');
+  } catch (error) {
+    console.error('Sequelize sync error:', error);
+  }
 });
