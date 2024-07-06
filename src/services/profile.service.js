@@ -2,8 +2,11 @@
 const Joi = require('joi'); // Para la validación de esquemas
 const boom = require('@hapi/boom'); // Para manejar errores HTTP
 
-// Importa el modelo de Profile desde su respectivo archivo
-const { Profile } = require('./../db/models/profile.model'); // Ajusta la ruta según tu estructura
+// Importa los modelos de Sequelize desde el archivo sequelize en la carpeta libs
+const { models } = require('./../libs/sequelize');
+
+// Importa los esquemas de validación
+const { createProfileSchema, updateProfileSchema, getProfileSchema } = require('./../schemas/profile.schema');
 
 // Define la clase ProfileService
 class ProfileService {
@@ -15,7 +18,7 @@ class ProfileService {
     await createProfileSchema.validateAsync(data);
 
     // Crea el nuevo perfil en la base de datos
-    const newProfile = await Profile.create(data);
+    const newProfile = await models.Profile.create(data);
 
     // Retorna el nuevo perfil creado
     return newProfile;
@@ -24,19 +27,19 @@ class ProfileService {
   // Método para buscar todos los perfiles en la base de datos
   async find() {
     // Busca todos los perfiles en la base de datos
-    const profiles = await Profile.findAll();
+    const profiles = await models.Profile.findAll();
 
     // Retorna la respuesta de la consulta
     return profiles;
   }
 
   // Método para buscar un perfil por su ID en la base de datos
-  async findById(id) {
+  async findOne(id) {
     // Valida el ID utilizando Joi
     await getProfileSchema.validateAsync({ id });
 
     // Busca el perfil en la base de datos por su ID
-    const profile = await Profile.findByPk(id);
+    const profile = await models.Profile.findByPk(id);
 
     // Si no se encuentra el perfil, lanza un error de "not found"
     if (!profile) {
@@ -53,12 +56,7 @@ class ProfileService {
     await updateProfileSchema.validateAsync(data);
 
     // Busca el perfil en la base de datos por su ID
-    const profile = await Profile.findByPk(id);
-
-    // Si no se encuentra el perfil, lanza un error de "not found"
-    if (!profile) {
-      throw boom.notFound('Profile not found');
-    }
+    const profile = await this.findOne(id);
 
     // Actualiza el perfil con los datos proporcionados
     const updatedProfile = await profile.update(data);
@@ -70,12 +68,7 @@ class ProfileService {
   // Método para eliminar un perfil de la base de datos
   async delete(id) {
     // Busca el perfil en la base de datos por su ID
-    const profile = await Profile.findByPk(id);
-
-    // Si no se encuentra el perfil, lanza un error de "not found"
-    if (!profile) {
-      throw boom.notFound('Profile not found');
-    }
+    const profile = await this.findOne(id);
 
     // Elimina el perfil de la base de datos
     await profile.destroy();
