@@ -13,13 +13,14 @@ const PASSWORD = encodeURIComponent(config.dbPassword);
 const URI = 'postgresql://admin:vT6ElDfTZ4Lr496AvVpSSgPeBtN35PEA@dpg-cq44pquehbks73b6rin0-a/my_db_6tno'
 
 // Crea una instancia de Sequelize con la URI de conexión y la configuración proporcionada
-const sequelize = new Sequelize(URI, {
+/*const sequelize = new Sequelize(URI, {
   dialectModule: require('pg'), // Especifica el dialecto de la base de datos como PostgreSQL
   logging: false, // Habilita el registro de consultas SQL
 });
-
-// Configura los modelos de Sequelize llamando a la función setupModels con la instancia de Sequelize
 setupModels(sequelize);
+
+*/
+// Configura los modelos de Sequelize llamando a la función setupModels con la instancia de Sequelize
 
 // Exporta la instancia de Sequelize configurada para que pueda ser utilizada en otros archivos
 module.exports = sequelize;
