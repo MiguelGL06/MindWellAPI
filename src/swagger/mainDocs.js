@@ -35,10 +35,10 @@ module.exports = {
     "paths": {
        ...userDocs,
        ...authDocs,
-       ...forumDocs,
-       ...postDocs,
        ...profileDocs,
+       ...forumDocs,
        ...topicDocs,
+       ...postDocs,
        // Agrega más paths aquí...
     }
 }
