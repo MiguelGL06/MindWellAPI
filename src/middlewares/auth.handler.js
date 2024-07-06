@@ -8,14 +8,18 @@ const { config } = require('./../config/config');
 // Middleware para verificar la apiKey en las solicitudes entrantes
 function checkApiKey(req, res, next) {
   try {
-    const key = req.headers.authorization
-    console.log(req.headers.authorization)
-    jwt.verify(key.substring(7), process.env.JWT_SECRET)
-    next()
-  }
-  catch (err) {
-    console.log(err);
-    throw Error('token expirado');
+    const key = req.headers.authorization;
+    if (!key) {
+      throw boom.unauthorized('Token not provided');
+    }
+    jwt.verify(key.substring(7), process.env.JWT_SECRET);
+    next();
+  } catch (err) {
+    if (err.name === 'TokenExpiredError') {
+      throw boom.unauthorized('Token expired');
+    } else {
+      throw boom.internal('Internal Server Error', err);
+    }
   }
 }
 
