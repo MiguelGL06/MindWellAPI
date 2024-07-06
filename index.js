@@ -8,18 +8,9 @@ const routerAPI = require('./src/routes/index');
 const { logErrors, errorHandler, customErrorHandler, ormErrorHandler } = require('./src/middlewares/error.handler');
 // Importa la función checkApiKey desde el archivo auth.handler.js ubicado en la carpeta middlewares
 const { checkApiKey } = require('./src/middlewares/auth.handler');
-const { exec } = require('child_process');
 // Crea una instancia de la aplicación express
 const app = express();
 
-exec("npm run migrations:run", (error, stdout, stderr) => {
-  if (error) {
-    console.log(error)
-  }
-  if (stderr) {
-    console.log(stderr)
-  }
-})
 
 // Define el número de puerto en el que se ejecutará el servidor
 const port = 3000;
