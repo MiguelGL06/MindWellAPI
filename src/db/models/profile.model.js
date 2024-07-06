@@ -1,7 +1,7 @@
 // profile.model.js
 const { Model, DataTypes, Sequelize } = require('sequelize');
 
-const PROFILE_TABLE = 'profiles';
+const PROFILE_TABLE = 'profile';
 
 const ProfileSchema = {
   id: {
