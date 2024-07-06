@@ -1,7 +1,7 @@
 const express = require('express');
 
 const topicsRouter = require('./topics.router');
-const topicsRouter = require('./profiles.router');
+const profilesRouter = require('./profiles.router');
 const postsRouter = require('./posts.router');
 const forumsRouter = require('./forums.router');
 const usersRouter = require('./users.router');

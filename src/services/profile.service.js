@@ -2,7 +2,7 @@
 const Joi = require('joi');
 
 // Importa el modelo de Profile desde su respectivo archivo
-const { Profile } = require('./path/to/profile.model'); // Ajusta la ruta según tu estructura
+const { Profile } = require('./../db/models/profile.model'); // Ajusta la ruta según tu estructura
 
 // Define la clase ProfileService
 class ProfileService {

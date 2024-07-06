@@ -1,7 +1,7 @@
 // Importa las bibliotecas necesarias
 const boom = require('@hapi/boom'); // Para manejar errores HTTP
 const { models } = require('../libs/sequelize'); // Importa los modelos de Sequelize desde el archivo sequelize en la carpeta libs
-const { createForumSchema, updateForumSchema, getForumSchema } = require('./../schemas/forum.schema'); // Importa los esquemas de validación para operaciones CRUD en la entidad de foro (forum)
+const { createForumSchema, updateForumSchema, getForumSchema } = require('./../schemas/forums.schema'); // Importa los esquemas de validación para operaciones CRUD en la entidad de foro (forum)
 
 // Define la clase ForumService
 class ForumService {

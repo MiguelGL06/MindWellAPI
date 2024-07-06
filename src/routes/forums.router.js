@@ -1,7 +1,7 @@
 const express = require('express'); // Importa Express para crear un enrutador
-const ForumService = require('../services/forum.service'); // Importa el servicio de foro para realizar operaciones CRUD en los foros
+const ForumService = require('../services/forums.service'); // Importa el servicio de foro para realizar operaciones CRUD en los foros
 const validatorHandler = require('../middlewares/validator.handler'); // Importa el middleware para manejar la validación de esquemas
-const { createForumSchema, updateForumSchema, getForumSchema } = require('./../schemas/forum.schema'); // Importa los esquemas de validación para los foros
+const { createForumSchema, updateForumSchema, getForumSchema } = require('./../schemas/forums.schema'); // Importa los esquemas de validación para los foros
 // Importa la función checkApiKey desde el archivo auth.handler.js ubicado en la carpeta middlewares
 const { checkApiKey } = require('../middlewares/auth.handler');
 
