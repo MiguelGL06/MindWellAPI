@@ -44,7 +44,7 @@ class ForumService {
 
       // Buscar un foro por su ID en la base de datos
       const forum = await models.Forum.findByPk(id, {
-        include: [{ model: models.Topic, as: 'topics' }]
+        include: [{ model: models.Topic, as: 'topics', include: [{ model: models.Post, as: 'posts'}] }]
       });
 
       // Si no se encuentra el foro, lanzar un error
