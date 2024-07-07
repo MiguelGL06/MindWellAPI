@@ -1,4 +1,21 @@
 module.exports = {
+  '/api/v1/profile/': {
+    get: {
+      security: [
+        {
+          bearerAuth: [],
+        },
+      ],
+      tags: ['user controllers'],
+      summary: 'Buscar perfiles',
+      description: 'Busca todos los perfiles',
+      responses: {
+        404: {
+          description: 'Usuarios nos encontrados.',
+        },
+      },
+    },
+  },
   '/api/v1/profile': {
     post: {
       tags: ['profile controllers'],
