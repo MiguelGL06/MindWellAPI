@@ -96,7 +96,15 @@ module.exports = {
           },
         },
       },
-      "responses": {
+      parameters: [
+        {
+          in: 'path',
+          name: 'id',
+          description: 'Id del usuario',
+          required: true,
+          type: 'string',
+        }],
+      responses: {
         201: {
           description: 'Usuario actualizado exitosamente.',
         },
