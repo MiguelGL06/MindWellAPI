@@ -86,6 +86,17 @@ module.exports = {
       tags: ['profile controllers'],
       summary: 'Actualizar perfil',
       description: 'Actualizar perfil',
+      parameters: [
+        {
+          in: 'path',
+          name: 'id',
+          description: 'Id del perfil',
+          required: true,
+          schema: {
+            type: 'string',
+          },
+        },
+      ],
       requestBody: {
         required: true,
         content: {
