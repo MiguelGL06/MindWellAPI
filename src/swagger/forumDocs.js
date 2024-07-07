@@ -40,6 +40,11 @@ module.exports = {
         },
       },
     },
+    get:{
+      tags: ['forum controllers'],
+      summary: 'Buscar todos los foros',
+      description: 'busca todos los foros',
+    },
   },
   '/api/v1/forums/{id}': {
     get: {
@@ -72,6 +77,9 @@ module.exports = {
             schema: {
               type: 'object',
               properties: {
+                id:{
+                  type: 'integer',
+                },
                 title: {
                   type: 'string',
                   description: 'Nombre del foro',
@@ -82,6 +90,7 @@ module.exports = {
                 },
               },
               example: {
+                id: '1',
                 title: 'Foro de tecnología',
                 description: 'Descripción actualizada del foro...',
               },
