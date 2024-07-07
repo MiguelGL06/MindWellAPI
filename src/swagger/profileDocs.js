@@ -15,14 +15,30 @@ module.exports = {
                   type: 'string',
                   description: 'ID del usuario asociado al perfil',
                 },
+                firstName: {
+                  type: 'string',
+                  description: 'Nombre del usuario',
+                },
+                lastName: {
+                  type: 'string',
+                  description: 'Apellido del usuario',
+                },
                 bio: {
                   type: 'string',
                   description: 'Biografía del usuario',
                 },
+                avatarUrl: {
+                  type: 'string',
+                  format: 'uri',
+                  description: 'URL de la imagen de avatar',
+                },
               },
               example: {
                 userId: '1234567890',
+                firstName: 'John',
+                lastName: 'Doe',
                 bio: 'Biografía del usuario...',
+                avatarUrl: 'https://example.com/avatar.jpg',
               },
             },
           },
@@ -77,13 +93,34 @@ module.exports = {
             schema: {
               type: 'object',
               properties: {
+                userId: {
+                  type: 'string',
+                  description: 'ID del usuario asociado al perfil',
+                },
+                firstName: {
+                  type: 'string',
+                  description: 'Nombre del usuario',
+                },
+                lastName: {
+                  type: 'string',
+                  description: 'Apellido del usuario',
+                },
                 bio: {
                   type: 'string',
                   description: 'Biografía del usuario',
                 },
+                avatarUrl: {
+                  type: 'string',
+                  format: 'uri',
+                  description: 'URL de la imagen de avatar',
+                },
               },
               example: {
-                bio: 'Biografía actualizada del usuario...',
+                userId: '1234567890',
+                firstName: 'John',
+                lastName: 'Doe',
+                bio: 'Biografía del usuario...',
+                avatarUrl: 'https://example.com/avatar.jpg',
               },
             },
           },
