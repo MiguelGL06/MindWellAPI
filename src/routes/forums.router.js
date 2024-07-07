@@ -47,7 +47,7 @@ router.post('/',
 );
 
 // Maneja las solicitudes PATCH para actualizar un foro existente por su ID
-router.patch('/:id', checkApiKey,
+router.patch('/:id',
   validatorHandler(getForumSchema, 'params'), // Valida el parámetro de ID utilizando el esquema correspondiente
   validatorHandler(updateForumSchema, 'body'), // Valida el cuerpo de la solicitud utilizando el esquema correspondiente
   async (req, res, next) => {
