@@ -90,9 +90,6 @@ module.exports = {
             schema: {
               type: 'object',
               properties: {
-                id:{
-                  type: 'string',
-                },
                 title: {
                   type: 'string',
                   description: 'Nombre del foro',
@@ -103,7 +100,6 @@ module.exports = {
                 },
               },
               example: {
-                id: '1',
                 title: 'Foro de tecnología',
                 description: 'Descripción actualizada del foro...',
               },
