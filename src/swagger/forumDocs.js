@@ -107,6 +107,15 @@ module.exports = {
           },
         },
       },
+      parameters: [
+        {
+          in: 'path',
+          name: 'id',
+          description: 'Id del foro',
+          required: true,
+          type: 'string',
+        },
+      ],
       responses: {
         201: {
           description: 'Foro actualizado exitosamente.',

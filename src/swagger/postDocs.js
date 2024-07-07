@@ -89,6 +89,17 @@ module.exports = {
           },
         },
       },
+      parameters: [
+        {
+          in: 'path',
+          name: 'id',
+          description: 'Id del perfil',
+          required: true,
+          schema: {
+            type: 'string',
+          },
+        },
+      ],
       responses: {
         201: {
           description: 'Respuesta actualizada exitosamente.',
