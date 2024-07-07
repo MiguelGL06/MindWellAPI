@@ -34,7 +34,6 @@ module.exports = {
                 },
               },
               example: {
-                userId: '1234567890',
                 firstName: 'John',
                 lastName: 'Doe',
                 bio: 'Biografía del usuario...',
@@ -127,7 +126,6 @@ module.exports = {
                 },
               },
               example: {
-                userId: '1234567890',
                 firstName: 'John',
                 lastName: 'Doe',
                 bio: 'Biografía del usuario...',
