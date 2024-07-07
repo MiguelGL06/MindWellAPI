@@ -32,6 +32,19 @@ router.get('/:id', //
   }
 );
 
+router.get('/:email', //
+  validatorHandler(getUserSchema, 'params'), // Valida el parámetro de ID utilizando el esquema correspondiente
+  async (req, res, next) => {
+    try {
+      const { email } = req.params; // Obtiene el ID del parámetro de la solicitud
+      const user = await service.findByEmail(email); // Busca un usuario por su ID utilizando el servicio
+      res.json(user); // Envía la respuesta con el usuario encontrado en formato JSON
+    } catch (error) {
+      next(error); // Pasa cualquier error al siguiente middleware de manejo de errores
+    }
+  }
+);
+
 // Maneja las solicitudes POST para crear un nuevo usuario
 router.post('/',
   validatorHandler(createUserSchema, 'body'), // Valida el cuerpo de la solicitud utilizando el esquema correspondiente
