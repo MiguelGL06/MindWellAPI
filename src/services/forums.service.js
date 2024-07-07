@@ -39,9 +39,6 @@ class ForumService {
   // Método para buscar un foro por su ID en la base de datos
   async findOne(id) {
     try {
-      // Validar el ID con el esquema Joi
-      await getForumSchema.validateAsync({ id });
-
       // Buscar un foro por su ID en la base de datos
       const forum = await models.Forum.findByPk(id, {
         include: [{ model: models.Topic, as: 'topics', include: [{ model: models.Post, as: 'posts'}] }]
