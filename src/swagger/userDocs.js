@@ -83,14 +83,9 @@ module.exports = {
                   format: 'email',
                   description: 'Correo electrónico del usuario',
                 },
-                password: {
-                  type: 'string',
-                  description: 'Contraseña del usuario',
-                },
               },
               example: {
                 email: 'john.doe@example.com',
-                password: 'secretpassword',
               },
             },
           },
