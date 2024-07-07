@@ -6,7 +6,7 @@ module.exports = {
           bearerAuth: [],
         },
       ],
-      tags: ['user controllers'],
+      tags: ['profile controllers'],
       summary: 'Buscar perfiles',
       description: 'Busca todos los perfiles',
       responses: {
