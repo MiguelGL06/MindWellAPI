@@ -1,4 +1,21 @@
 module.exports = {
+  '/api/v1/post/': {
+    get: {
+      security: [
+        {
+          bearerAuth: [],
+        },
+      ],
+      tags: ['post controllers'],
+      summary: 'Buscar respuestas',
+      description: 'Busca todas las respuestas',
+      responses: {
+        404: {
+          description: 'respuestas no encontrados.',
+        },
+      },
+    },
+  },
   '/api/v1/post': {
     post: {
       tags: ['post controllers'],

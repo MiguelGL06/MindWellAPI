@@ -1,4 +1,21 @@
 module.exports = {
+  '/api/v1/topic/': {
+    get: {
+      security: [
+        {
+          bearerAuth: [],
+        },
+      ],
+      tags: ['topic controllers'],
+      summary: 'Buscar temas',
+      description: 'Busca todos los temas',
+      responses: {
+        404: {
+          description: 'temas no encontrados.',
+        },
+      },
+    },
+  },
   '/api/v1/topic': {
     post: {
       tags: ['topic controllers'],
