@@ -4,6 +4,7 @@ const mainDocs = require("./src/swagger/mainDocs");
 const swaggerUi = require("swagger-ui-express");
 const sequelize = require('./src/libs/sequelize');
 
+const cors = require('cors');
 // Importa el módulo routerAPI desde el archivo routes.js ubicado en la misma carpeta
 const routerAPI = require('./src/routes/index');
 // Importa los manejadores de errores desde el archivo error.handler.js ubicado en la carpeta middlewares
@@ -13,7 +14,13 @@ const { checkApiKey } = require('./src/middlewares/auth.handler');
 // Crea una instancia de la aplicación express
 const app = express();
 
+const corsOptions = {
+  origin: 'http://localhost:3000', // Cambia esto a la URL de tu front-end
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'], // Métodos permitidos
+  allowedHeaders: ['Content-Type', 'Authorization'], // Encabezados permitidos
+};
 
+app.use(cors(corsOptions));
 // Define el número de puerto en el que se ejecutará el servidor
 const port = 3000;
 // Agrega un middleware para analizar el cuerpo de las solicitudes en formato JSON
