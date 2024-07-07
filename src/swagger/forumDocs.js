@@ -1,22 +1,22 @@
 module.exports = {
-  '/api/v1/forums': {
-    '/api/v1/forums/': {
-      get: {
-        security: [
-          {
-            bearerAuth: [],
-          },
-        ],
-        tags: ['forum controllers'],
-        summary: 'Buscar foros',
-        description: 'Busca todos los foros',
-        responses: {
-          404: {
-            description: 'foros no encontrados.',
-          },
+  '/api/v1/forums/': {
+    get: {
+      security: [
+        {
+          bearerAuth: [],
+        },
+      ],
+      tags: ['forum controllers'],
+      summary: 'Buscar foros',
+      description: 'Busca todos los foros',
+      responses: {
+        404: {
+          description: 'foros no encontrados.',
         },
       },
     },
+  },
+  '/api/v1/forums': {
     post: {
       tags: ['forum controllers'],
       summary: 'Crear nuevo foro',
