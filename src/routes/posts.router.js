@@ -47,7 +47,7 @@ router.post('/',
 );
 
 // Maneja las solicitudes PATCH para actualizar una publicación existente por su ID
-router.patch('/:id', checkApiKey,
+router.patch('/:id',
   validatorHandler(getPostSchema, 'params'), // Valida el parámetro de ID utilizando el esquema correspondiente
   validatorHandler(updatePostSchema, 'body'), // Valida el cuerpo de la solicitud utilizando el esquema correspondiente
   async (req, res, next) => {

@@ -24,7 +24,7 @@ const TopicSchema = {
     type: DataTypes.INTEGER,
     references: { model: 'users', key: 'id' },
     onUpdate: 'CASCADE',
-    onDelete: 'CASCADE'
+    onDelete: 'SET NULL'
   },
   title: {
     allowNull: false,
