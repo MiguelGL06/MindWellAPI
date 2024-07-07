@@ -40,11 +40,24 @@ module.exports = {
         },
       },
     },
-    get:{
-      tags: ['forum controllers'],
-      summary: 'Buscar todos los foros',
-      description: 'busca todos los foros',
+    '/api/v1/forums/': {
+      get: {
+        security: [
+          {
+            bearerAuth: [],
+          },
+        ],
+        tags: ['user controllers'],
+        summary: 'Buscar foros',
+        description: 'Busca todos los foros',
+        responses: {
+          404: {
+            description: 'foros no encontrados.',
+          },
+        },
+      },
     },
+
   },
   '/api/v1/forums/{id}': {
     get: {
@@ -78,7 +91,7 @@ module.exports = {
               type: 'object',
               properties: {
                 id:{
-                  type: 'integer',
+                  type: 'string',
                 },
                 title: {
                   type: 'string',
