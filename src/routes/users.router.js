@@ -1,7 +1,7 @@
 const express = require('express'); // Importa Express para crear un enrutador
 const UserService = require('../services/user.service'); // Importa el servicio de usuario para realizar operaciones CRUD en los usuarios
 const validatorHandler = require('../middlewares/validator.handler'); // Importa el middleware para manejar la validación de esquemas
-const { updateUserSchema, createUserSchema, getUserSchema } = require('./../schemas/user.schema'); // Importa los esquemas de validación para los usuarios
+const { updateUserSchema, createUserSchema, getUserSchema, getEmailSchema } = require('./../schemas/user.schema'); // Importa los esquemas de validación para los usuarios
 // Importa la función checkApiKey desde el archivo auth.handler.js ubicado en la carpeta middlewares
 const { checkApiKey } = require('../middlewares/auth.handler');
 
@@ -33,7 +33,7 @@ router.get('/:id', //
 );
 
 router.get('/:email', //
-  validatorHandler(getUserSchema, 'params'), // Valida el parámetro de ID utilizando el esquema correspondiente
+  validatorHandler(getEmailSchema, 'params'), // Valida el parámetro de ID utilizando el esquema correspondiente
   async (req, res, next) => {
     try {
       const { email } = req.params; // Obtiene el ID del parámetro de la solicitud
