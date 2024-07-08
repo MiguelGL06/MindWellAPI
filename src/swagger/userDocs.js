@@ -155,29 +155,5 @@ module.exports = {
       },
     },
   },
-  '/api/v1/users/{email}': {
-    get: {
-      security: [
-        {
-          bearerAuth: [],
-        },
-      ],
-      tags: ['user controllers'],
-      summary: 'Buscar usuario',
-      description: 'Busca el usuario por su email',
-      parameters: [
-        {
-          in: 'path',
-          name: 'email',
-          description: 'email del usuario',
-          required: true,
-          type: 'string',
-        }],
-      responses: {
-        404: {
-          description: 'Usuario no encontrado.',
-        },
-      },
-    },
-  },
+
 };

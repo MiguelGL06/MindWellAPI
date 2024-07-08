@@ -59,9 +59,9 @@ class UserService {
   }
 
   // Método para buscar un usuario por su ID en la base de datos
-  async findOne(id, email) {
+  async findOne(id) {
     // Busca un usuario por su ID en la base de datos
-    const user = await models.User.findByPk(id, email);
+    const user = await models.User.findByPk(id);
 
     // Si no se encuentra el usuario, lanza un error de "not found"
     if (!user) {
