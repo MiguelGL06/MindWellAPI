@@ -16,15 +16,12 @@ const { checkApiKey } = require('./src/middlewares/auth.handler');
 // Crea una instancia de la aplicación express
 const app = express();
 
-// Configura CORS
-const corsOptions = {
-  origin: ['https://mindwell-master.vercel.app'], // Cambia esto a la URL de tu front-end
-  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'], // Métodos permitidos
-};
-app.use(cors(corsOptions));
-
 // Define el número de puerto en el que se ejecutará el servidor
 const port = 3000;
+
+// Configura CORS
+const corsOptions = ['https://mindwell-master.vercel.app']
+app.use(cors({ origin: corsOptions }));
 
 // Agrega un middleware para analizar el cuerpo de las solicitudes en formato JSON
 app.use(express.json());
