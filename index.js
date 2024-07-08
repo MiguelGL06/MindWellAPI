@@ -20,8 +20,16 @@ const app = express();
 const port = 3000;
 
 // Configura CORS
-const corsOptions = ['https://mindwell-master.vercel.app']
-app.use(cors({ origin: corsOptions }));
+//const corsOptions = ['https://mindwell-master.vercel.app']
+//app.use(cors({ origin: corsOptions }));
+
+app.use(cors({
+    origin: '*',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+    optionsSuccessStatus: 204,
+    allowedHeaders: 'Content-Type,Authorization',
+}));
 
 // Agrega un middleware para analizar el cuerpo de las solicitudes en formato JSON
 app.use(express.json());
