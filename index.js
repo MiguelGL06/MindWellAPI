@@ -18,7 +18,7 @@ const app = express();
 
 // Configura CORS
 const corsOptions = {
-  origin: 'https://mindwell-master.vercel.app', // Cambia esto a la URL de tu front-end
+  origin: ['https://mindwell-master.vercel.app'], // Cambia esto a la URL de tu front-end
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'], // Métodos permitidos
 };
 app.use(cors(corsOptions));
