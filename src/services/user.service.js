@@ -3,6 +3,8 @@ const boom = require('@hapi/boom'); // Para manejar errores HTTP
 const bcrypt = require('bcryptjs'); // Para el hash de contraseñas
 const { Profile } = require('../db/models/profile.model'); // Importa el modelo Profile
 const { models, sequelize } = require('./../libs/sequelize'); // Importa los modelos y sequelize desde el archivo sequelize en la carpeta libs
+const sekualize = require('./../libs/sequelize'); // Importa los modelos y sequelize desde el archivo sequelize en la carpeta libs
+
 
 // Define la clase UserService
 class UserService {
@@ -10,7 +12,7 @@ class UserService {
 
   // Método para crear un nuevo usuario en la base de datos
   async create(data) {
-    const trans = await sequelize.transaction();
+    const trans = await sekualize.transaction();
     try {
       // Primero crea el perfil
       const profileData = {
