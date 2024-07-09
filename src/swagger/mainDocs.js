@@ -1,6 +1,9 @@
 const userDocs = require('./userDocs');
 const authDocs = require('./authDocs');
-const customerDocs = require('./customerDocs');
+const forumDocs = require('./forumDocs');
+const postDocs = require('./postDocs');
+const profileDocs = require('./profileDocs');
+const topicDocs = require('./topicDocs');
 
 module.exports = {
     "openapi": "3.0.0",
@@ -15,6 +18,9 @@ module.exports = {
         },
         {
           "url": "https://mindwellapi.onrender.com"
+        },
+        {
+          "url": "https://mindwellapi-1.onrender.com"
         }
     ],
     "components": {
@@ -29,6 +35,10 @@ module.exports = {
     "paths": {
        ...userDocs,
        ...authDocs,
-       ...customerDocs
+       ...profileDocs,
+       ...forumDocs,
+       ...topicDocs,
+       ...postDocs,
+       // Agrega más paths aquí...
     }
 }

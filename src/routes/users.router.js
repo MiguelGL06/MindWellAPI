@@ -19,7 +19,7 @@ router.get('/', async (req, res, next) => {
 });
 
 // Maneja las solicitudes GET para obtener un usuario por su ID
-router.get('/:id', checkApiKey, //
+router.get('/:id', //
   validatorHandler(getUserSchema, 'params'), // Valida el parámetro de ID utilizando el esquema correspondiente
   async (req, res, next) => {
     try {
@@ -47,7 +47,7 @@ router.post('/',
 );
 
 // Maneja las solicitudes PATCH para actualizar un usuario existente por su ID
-router.patch('/:id', checkApiKey,
+router.patch('/:id',
   validatorHandler(getUserSchema, 'params'), // Valida el parámetro de ID utilizando el esquema correspondiente
   validatorHandler(updateUserSchema, 'body'), // Valida el cuerpo de la solicitud utilizando el esquema correspondiente
   async (req, res, next) => {

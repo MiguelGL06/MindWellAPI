@@ -19,5 +19,9 @@ const getUserSchema = Joi.object({
   id: Joi.number().integer().required(), // El ID debe ser un número entero y obligatorio
 });
 
+const getEmailSchema = Joi.object({
+  email: Joi.string().email().required()
+});
+
 // Exporta los esquemas de validación para ser utilizados en otras partes de la aplicación
-module.exports = { createUserSchema, updateUserSchema, getUserSchema };
+module.exports = { createUserSchema, updateUserSchema, getUserSchema, getEmailSchema };

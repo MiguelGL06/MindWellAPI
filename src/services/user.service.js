@@ -1,8 +1,8 @@
 // Importa las bibliotecas necesarias
+const boom = require('@hapi/boom'); // Para manejar errores HTTP
 const bcrypt = require('bcryptjs'); // Para el hash de contraseñas
-
-// Importa los modelos de Sequelize desde el archivo sequelize en la carpeta libs
-const { models } = require('./../libs/sequelize');
+const { Profile } = require('../db/models/profile.model'); // Importa el modelo Profile
+const { models, sequelize } = require('./../libs/sequelize'); // Importa los modelos y sequelize desde el archivo sequelize en la carpeta libs
 
 // Define la clase UserService
 class UserService {
@@ -10,28 +10,45 @@ class UserService {
 
   // Método para crear un nuevo usuario en la base de datos
   async create(data) {
-    // Genera un hash de la contraseña del usuario utilizando bcrypt
-    const hash = await bcrypt.hash(data.password, 10);
+    const trans = await sequelize.transaction();
+    try {
+      // Primero crea el perfil
+      const profileData = {
+        firstName: data.firstName || '',
+        lastName: data.lastName || '',
+        bio: data.bio || '',
+        avatarUrl: data.avatarUrl || ''
+      };
 
-    // Crea un nuevo usuario en la base de datos con la contraseña hasheada
-    const newUser = await models.User.create({
-      ...data,
-      password: hash
-    });
+      const newProfile = await Profile.create(profileData, { transaction: trans });
 
-    // Elimina la contraseña del objeto de usuario para no enviarla en la respuesta
-    delete newUser.dataValues.password;
+      // Genera un hash de la contraseña del usuario utilizando bcrypt
+      const hash = await bcrypt.hash(data.password, 10);
 
-    // Retorna el nuevo usuario creado
-    return newUser;
+      // Crea un nuevo usuario en la base de datos con la contraseña hasheada y el ID del perfil asociado
+      const newUser = await models.User.create({
+        email: data.email,
+        password: hash,
+        profileId: newProfile.id // Asociar el perfil con el usuario
+      }, { transaction: trans });
+
+      // Elimina la contraseña del objeto de usuario para no enviarla en la respuesta
+      delete newUser.dataValues.password;
+
+      await trans.commit();
+      // Retorna el nuevo usuario creado
+      return newUser;
+
+    } catch (error) {
+      await trans.rollback();
+      throw error; // Lanza el error para que pueda ser manejado por el llamador
+    }
   }
 
   // Método para buscar todos los usuarios en la base de datos
   async find() {
-    // Busca todos los usuarios en la base de datos, incluyendo la relación 'customer'
-    const rta = await models.User.findAll({
-      include: ['customer']
-    });
+    // Busca todos los usuarios en la base de datos
+    const rta = await models.User.findAll();
 
     // Retorna la respuesta de la consulta
     return rta;
@@ -53,9 +70,9 @@ class UserService {
     // Busca un usuario por su ID en la base de datos
     const user = await models.User.findByPk(id);
 
-    // Si no se encuentra el usuario, lanza un error
+    // Si no se encuentra el usuario, lanza un error de "not found"
     if (!user) {
-      throw new Error('User not found');
+      throw boom.notFound('user not found');
     }
 
     // Retorna el usuario encontrado

@@ -42,7 +42,6 @@ module.exports = {
       },
     },
   },
-
   '/api/v1/users/{id}': {
     get: {
       security: [
@@ -83,20 +82,23 @@ module.exports = {
                   format: 'email',
                   description: 'Correo electrónico del usuario',
                 },
-                password: {
-                  type: 'string',
-                  description: 'Contraseña del usuario',
-                },
               },
               example: {
                 email: 'john.doe@example.com',
-                password: 'secretpassword',
               },
             },
           },
         },
       },
-      "responses": {
+      parameters: [
+        {
+          in: 'path',
+          name: 'id',
+          description: 'Id del usuario',
+          required: true,
+          type: 'string',
+        }],
+      responses: {
         201: {
           description: 'Usuario actualizado exitosamente.',
         },

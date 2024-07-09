@@ -1,17 +1,25 @@
+// Importa el paquete boom para generar errores HTTP de manera fácil y consistente
+const boom = require('@hapi/boom');
 const jwt = require('jsonwebtoken');
 // Importa la configuración de la aplicación, que incluye la apiKey
 const { config } = require('./../config/config');
+
 
 // Middleware para verificar la apiKey en las solicitudes entrantes
 function checkApiKey(req, res, next) {
   try {
     const key = req.headers.authorization;
-    console.log(req.headers.authorization);
+    if (!key) {
+      throw boom.unauthorized('Token not provided');
+    }
     jwt.verify(key.substring(7), process.env.JWT_SECRET);
     next();
   } catch (err) {
-    console.log(err);
-    res.status(401).json({ message: 'Token expirado o inválido' });
+    if (err.name === 'TokenExpiredError') {
+      throw boom.unauthorized('Token expired');
+    } else {
+      throw boom.internal('Internal Server Error', err);
+    }
   }
 }
 
@@ -24,8 +32,8 @@ function checkAdminRole(req, res, next) {
     // Si el usuario tiene el rol de administrador, pasa al siguiente middleware
     next();
   } else {
-    // Si el usuario no tiene el rol de administrador, genera un error de no autorizado
-    res.status(403).json({ message: 'No autorizado' });
+    // Si el usuario no tiene el rol de administrador, genera un error de no autorizado con el paquete boom y pasa al siguiente middleware de manejo de errores
+    next(boom.unauthorized());
   }
 }
 
@@ -39,10 +47,10 @@ function checkRoles(...roles) {
       // Si el usuario tiene alguno de los roles proporcionados, pasa al siguiente middleware
       next();
     } else {
-      // Si el usuario no tiene ninguno de los roles proporcionados, genera un error de no autorizado
-      res.status(403).json({ message: 'No autorizado' });
+      // Si el usuario no tiene ninguno de los roles proporcionados, genera un error de no autorizado con el paquete boom y pasa al siguiente middleware de manejo de errores
+      next(boom.unauthorized());
     }
-  };
+  }
 }
 
 // Exporta los middlewares para que puedan ser utilizados en otros archivos
